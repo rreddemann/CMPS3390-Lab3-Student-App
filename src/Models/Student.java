@@ -14,4 +14,16 @@ public class Student {
     public String toString(){
         return String.format("%s %s (%d)",firstName, lastName, studentID);
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public int getStudentID() {
+        return studentID;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
 }

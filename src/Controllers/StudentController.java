@@ -6,12 +6,18 @@ import Views.StudentGUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentController {
     public StudentController(StudentData model, StudentGUI view){
-        view.setAddStudentListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+            ArrayList<Student> students = model.getStudents();
+
+            students.forEach(s -> {
+                view.addStudent(s);
+            });
+
+            view.setAddStudentListener(_ -> {
                 String firstName = view.getFirstName();
                 String lastName = view.getLastName();
                 String studentID = view.getStudentID();
@@ -25,11 +31,10 @@ public class StudentController {
                 model.addStudent(student);
                 view.addStudent(student);
                 view.clearForm();
-            }
+
         });
-        view.setRemoveStudentListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+
+        view.setRemoveStudentListener(_ -> {
                 Student student = view.getSelectedStudent();
 
                 if(student == null){
@@ -39,8 +44,6 @@ public class StudentController {
 
                 model.removeStudent(student);
                 view.removeStudent(student);
-            }
         });
-
     }
 }
